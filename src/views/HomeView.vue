@@ -112,20 +112,20 @@
 				<div class="flex">
 					<div class="field">
 						<label for="last_name">{{ trl('Nom') }}</label>
-						<input type="text" name="last_name" id="last_name" v-model="form.last_name" required />
+						<input type="text" name="last_name" id="last_name" required />
 					</div>
 					<div class="field">
 						<label for="first_name">{{ trl('Prénom') }}</label>
-						<input type="text" name="first_name" id="first_name" v-model="form.first_name" />
+						<input type="text" name="first_name" id="first_name" />
 					</div>
 				</div>
 				<div class="field">
 					<label for="email">Email</label>
-					<input type="email" name="email" id="email" v-model="form.email" required />
+					<input type="email" name="email" id="email" required />
 				</div>
 				<div class="field">
 					<label for="message">Message</label>
-					<textarea name="message" id="message" cols="30" rows="10" v-model="form.message" required></textarea>
+					<textarea name="message" id="message" cols="30" rows="10" required></textarea>
 				</div>
 				<LinkSite :label="trl('Envoyer')" button fill type="submit" plane />
 			</form>
