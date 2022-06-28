@@ -1,0 +1,41 @@
+//Color - Light
+$light-text-color: #191a1e;
+$light-bkg-color: #ffffff;
+$light-border-color: #1c1d2029;
+$light-star: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 8C4.41828 8 8 4.41828 8 0C8 4.41828 11.5817 8 16 8C11.5817 8 8 11.5817 8 16C8 11.5817 4.41828 8 0 8Z" fill="rgb(25,26,30)"/></svg>');
+
+@mixin light-colors {
+	--text-color: #{$light-text-color};
+	--bkg-color: #{$light-bkg-color};
+	--border-color: #{$light-border-color};
+	--star: #{$light-star};
+}
+
+//Color - Dark
+$dark-text-color: #ffffff;
+$dark-bkg-color: #191a1e;
+$dark-border-color: #dedfe229;
+$dark-star: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 8C4.41828 8 8 4.41828 8 0C8 4.41828 11.5817 8 16 8C11.5817 8 8 11.5817 8 16C8 11.5817 4.41828 8 0 8Z" fill="white"/></svg>');
+
+@mixin dark-colors {
+	--text-color: #{$dark-text-color};
+	--bkg-color: #{$dark-bkg-color};
+	--border-color: #{$dark-border-color};
+	--star: #{$dark-star};
+}
+
+// Functions
+@function space($size) {
+	@return $size * 8px;
+}
+
+$main-space: space(10);
+
+// Fonts
+$west: 'West', sans-serif;
+
+@font-face {
+	font-family: 'West';
+	src: url('@/assets/fonts/WestTrial_VAR.woff2') format('woff2-variations');
+	font-weight: 100 900;
+}
