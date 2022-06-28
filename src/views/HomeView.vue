@@ -105,7 +105,7 @@
 		<section class="contact">
 			<h2 class="subtitle" v-html="trl('Me <em>contacter</em>')"></h2>
 			<hr />
-			<form name="contact" ref="form" method="POST" @submit.prevent="send" data-netlify="true">
+			<form name="contact" @submit.prevent="send">
 				<div class="overlay" v-show="info.length > 0">
 					<span>{{ info }}</span>
 				</div>
@@ -149,13 +149,12 @@ import LinkSite from '../components/LinkSite.vue'
 import ProjectLink from '../components/ProjectLink.vue'
 
 const projects = ref({})
-// const form = reactive({
-// 	last_name: '',
-// 	first_name: '',
-// 	email: '',
-// 	message: '',
-// })
-const form = ref(null)
+const form = reactive({
+	last_name: '',
+	first_name: '',
+	email: '',
+	message: '',
+})
 const info = ref('')
 
 const getProjects = async () => {
@@ -173,27 +172,27 @@ const getProjects = async () => {
 }
 
 const send = async () => {
-	// try {
-	// 	let { error } = await supabase.from('messages').insert([form])
+	try {
+		let { error } = await supabase.from('messages').insert([form])
 
-	// 	if (error) {
-	// 		throw error
-	// 	} else {
-	// 		info.value = trl('Votre message à bien été envoyé')
-	// 	}
-	// } catch (error) {
-	// 	console.error('home.message', error.message)
-	// 	info.value = trl('Une erreur est survenue')
-	// }
+		if (error) {
+			throw error
+		} else {
+			info.value = trl('Votre message à bien été envoyé')
+		}
+	} catch (error) {
+		console.error('home.message', error.message)
+		info.value = trl('Une erreur est survenue')
+	}
 
-	let formData = new FormData(form.value)
-	fetch('/', {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: new URLSearchParams(formData).toString(),
-	})
-		.then(() => (info.value = trl('Votre message à bien été envoyé')))
-		.catch((error) => alert(error))
+	// let formData = new FormData(form.value)
+	// fetch('/', {
+	// 	method: 'POST',
+	// 	headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+	// 	body: new URLSearchParams(formData).toString(),
+	// })
+	// 	.then(() => (info.value = trl('Votre message à bien été envoyé')))
+	// 	.catch((error) => alert(error))
 }
 
 const trl = useTranslate()
