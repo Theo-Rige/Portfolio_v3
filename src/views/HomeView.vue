@@ -187,7 +187,7 @@ const send = async () => {
 	// }
 
 	let formData = new FormData(form.value)
-	fetch('/', {
+	fetch('https://rigetheo.netlify.app/', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 		body: new URLSearchParams(formData).toString(),
