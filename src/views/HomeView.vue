@@ -184,15 +184,6 @@ const send = async () => {
 		console.error('home.message', error.message)
 		info.value = trl('Une erreur est survenue')
 	}
-
-	// let formData = new FormData(form.value)
-	// fetch('/', {
-	// 	method: 'POST',
-	// 	headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-	// 	body: new URLSearchParams(formData).toString(),
-	// })
-	// 	.then(() => (info.value = trl('Votre message à bien été envoyé')))
-	// 	.catch((error) => alert(error))
 }
 
 const trl = useTranslate()
