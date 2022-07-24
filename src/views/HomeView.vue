@@ -105,7 +105,7 @@
 		<section class="contact">
 			<h2 class="subtitle" v-html="trl('Me <em>contacter</em>')"></h2>
 			<hr />
-			<form name="contact" @submit.prevent="send" ref="contact">
+			<form name="contact" @submit.prevent="send" ref="contact" netlify>
 				<div class="overlay" v-show="info.length > 0">
 					<span>{{ info }}</span>
 				</div>
