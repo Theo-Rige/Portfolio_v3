@@ -5,6 +5,5 @@ import translate from './plugins/translate'
 
 import 'simplebar' // or "import SimpleBar from 'simplebar';" if you want to use it manually.
 import 'simplebar/dist/simplebar.css'
-import 'remixicon/fonts/remixicon.css'
 
 createApp(App).use(router).use(translate).mount('body')
