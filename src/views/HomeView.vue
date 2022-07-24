@@ -1,7 +1,6 @@
 <template>
 	<main data-simplebar class="home">
 		<section class="hero">
-			<canvas id="gradient" data-transition-in />
 			<div class="name">
 				<AnimHandler :text="headings.name" />
 			</div>
@@ -16,8 +15,8 @@
 					</div>
 				</div>
 			</h2>
-			<hr />
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu tempor sit nec ut. Sapien posuere sed donec facilisis vitae tincidunt gravida a.</p>
+			<!-- <hr /> -->
+			<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu tempor sit nec ut. Sapien posuere sed donec facilisis vitae tincidunt gravida a.</p> -->
 		</section>
 		<section class="about">
 			<div class="profile">
@@ -137,12 +136,12 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 
 import { supabase } from '@/supabase'
 import anime from 'animejs/lib/anime.es.js'
 import { useTranslate } from '../plugins/translate'
-import { Gradient } from '@/gradient'
+// import { Gradient } from '@/gradient'
 
 import AnimHandler from '../components/AnimHandler.vue'
 import LinkSite from '../components/LinkSite.vue'
@@ -204,7 +203,7 @@ const send = async () => {
 
 const trl = useTranslate()
 
-const gradient = new Gradient()
+// const gradient = new Gradient()
 
 const headings = reactive({
 	name: 'Théo RIGÉ',
@@ -213,18 +212,18 @@ const headings = reactive({
 	italic: trl('WEB'),
 })
 
-const letters = computed(() => {
-	let count = 0
-	for (const heading in headings) {
-		count += headings[heading].length
-	}
-	return count
-})
+// const letters = computed(() => {
+// 	let count = 0
+// 	for (const heading in headings) {
+// 		count += headings[heading].length
+// 	}
+// 	return count
+// })
 
 const delay = 40
 
 onMounted(() => {
-	gradient.initGradient('#gradient')
+	// gradient.initGradient('#gradient')
 
 	getProjects()
 
@@ -243,7 +242,7 @@ onMounted(() => {
 		.add({
 			targets: '.letter',
 			duration: 600,
-			delay: anime.stagger(delay, { start: 200 }),
+			delay: anime.stagger(delay),
 			easing: 'easeOutQuint',
 			translateY: ['800%', '0%'],
 			opacity: [
@@ -251,15 +250,15 @@ onMounted(() => {
 				{ value: 1, easing: 'linear' },
 			],
 		})
-		.add(
-			{
-				targets: '.hero hr',
-				duration: letters.value * delay,
-				easing: 'easeInCubic',
-				width: ['0%', '100%'],
-			},
-			'-=' + letters.value * delay
-		)
+	// .add(
+	// 	{
+	// 		targets: '.hero hr',
+	// 		duration: letters.value * delay,
+	// 		easing: 'easeInCubic',
+	// 		width: ['0%', '100%'],
+	// 	},
+	// 	'-=' + letters.value * delay
+	// )
 })
 </script>
 
@@ -273,9 +272,10 @@ section:not(.hero) {
 		height: calc(100vh - 2 * $main-space);
 		position: relative;
 		justify-content: center;
-		color: $dark-text-color;
+		color: $light-text-color;
 		overflow: hidden;
 		clip-path: inset(calc(50% - 80px) calc(50% - 80px));
+		background: url('@/assets/hero.webp') no-repeat center / cover;
 
 		#gradient {
 			position: absolute;
