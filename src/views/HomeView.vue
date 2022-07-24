@@ -105,7 +105,7 @@
 		<section class="contact">
 			<h2 class="subtitle" v-html="trl('Me <em>contacter</em>')"></h2>
 			<hr />
-			<form name="contact" @submit.prevent="send">
+			<form name="contact" @submit.prevent="send" ref="contact">
 				<div class="overlay" v-show="info.length > 0">
 					<span>{{ info }}</span>
 				</div>
@@ -149,6 +149,7 @@ import LinkSite from '../components/LinkSite.vue'
 import ProjectLink from '../components/ProjectLink.vue'
 
 const projects = ref({})
+const contact = ref()
 const form = reactive({
 	last_name: '',
 	first_name: '',
@@ -179,6 +180,21 @@ const send = async () => {
 			throw error
 		} else {
 			info.value = trl('Votre message à bien été envoyé')
+		}
+	} catch (error) {
+		console.error('home.message', error.message)
+		info.value = trl('Une erreur est survenue')
+	}
+	try {
+		let formData = new FormData(contact.value)
+		let { error } = await fetch('/', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: new URLSearchParams(formData).toString(),
+		})
+
+		if (error) {
+			throw error
 		}
 	} catch (error) {
 		console.error('home.message', error.message)
@@ -487,6 +503,7 @@ section:not(.hero) {
 
 			.overlay {
 				position: absolute;
+				z-index: 1;
 				inset: 0;
 				background: var(--bkg-color);
 				justify-content: center;
